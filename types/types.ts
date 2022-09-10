@@ -69,6 +69,9 @@ const tupleWithSomeValue: ['Name', 'age'] = ['Name', 'age'];
 
 //! Any - Это означает что мы можем задать любой тип и любое значение или же мы также можем переопределит то значение которая была определена и переопределиться тип того значения которой мы задали (Не рекомендуется использовать этот тип данных)
 let isAny: any = 1;
+let isArrayAny: [any, any] = [1, 'string'];
+let isArrayAnyGeneric: Array<any> = [1, 'string', null, undefined, Symbol('id'), {}, false, 1n, []];
+let isObjectAny: any = {}
 isAny = 'SomeString';
 isAny = true;
 isAny = 1n;
@@ -77,6 +80,3 @@ isAny = null;
 isAny = undefined;
 isAny = {};
 isAny = [];
-
-
-

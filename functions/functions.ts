@@ -28,13 +28,12 @@ interface IPosition {
 }
 
 interface IDefault extends IPosition {
-	default: string;
+	default?: string;
 }
 
 function myPosition(): IPosition;
 function myPosition(a: number): IDefault;
 function myPosition(a: number, b: number): IPosition;
-
 
 function myPosition(a?: number, b?: number) {
 	if (!a && !b) {
@@ -51,3 +50,10 @@ function myPosition(a?: number, b?: number) {
 console.log('Empty', myPosition());
 console.log('One params', myPosition(42));
 console.log('Two params', myPosition(41, 1));
+
+//! REST
+
+function restOperation(id: string, ...rest: Array<any>): void {
+	console.log(id, rest);
+}
+restOperation('1994', {name: 'Aslan'}, 1)

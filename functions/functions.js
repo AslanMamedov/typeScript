@@ -28,3 +28,8 @@ function myPosition(a, b) {
 console.log('Empty', myPosition());
 console.log('One params', myPosition(42));
 console.log('Two params', myPosition(41, 1));
+//! REST
+function restOperation(id, ...rest) {
+    console.log(id, rest);
+}
+restOperation('1994', { name: 'Aslan' }, 1);
