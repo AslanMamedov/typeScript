@@ -25,3 +25,23 @@ const oldUserType = {
     isMarried: true,
     year: 1994,
 };
+const typeUser = {
+    name: 'Aslan',
+    age: 28,
+    isMarried: false,
+    year: 1994,
+};
+const apiError = JSON.parse(JSON.stringify('[]'));
+const formatedMessage = apiError.map(e => e.toUpperCase());
+//~ const ❗
+const userConstOne = {
+    name: 'Aslan',
+    age: 28
+};
+const userConstTwo = {
+    name: 'Aslan',
+    age: 28
+};
+const months = ['January', 'February', 'Martch'];
+for (let month of months) {
+}

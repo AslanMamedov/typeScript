@@ -6,6 +6,8 @@ const isNull: null = null;
 const isUndefined: undefined = undefined;
 const isSymbol: symbol = Symbol('symbol');
 const isBigIng: bigint = 1n; //! 1n 1_000n
+const isDate: Date = new Date()
+
 
 //! Object - Обьект
 const isObject: object = {
@@ -51,6 +53,11 @@ const arrayIsBigIntGeneric: Array<bigint> = [1n, 1_000_111n];
 //~  Generic Array<Genereic>
 const arrayIsSymbol: symbol[] = [Symbol('id'), Symbol('key')];
 const arrayIsSymbolGeneric: Array<symbol> = [Symbol('id'), Symbol('key')];
+//~  Generic Array<Genereic>
+const arrayIsArray: string[][] = [['Aslan']]
+const arrayIsArrayGeneric: Array<string[]> = [['String']]
+
+
 
 //! Tuple - Это означает что в массиве должно быть последовательность типов которые должны соотвествовать этим типам и количеству заданных типов.
 const tupleType: [number, string, boolean, null, undefined, bigint, symbol, object, number[]] = [
@@ -71,7 +78,7 @@ const tupleWithSomeValue: ['Name', 'age'] = ['Name', 'age'];
 let isAny: any = 1;
 let isArrayAny: [any, any] = [1, 'string'];
 let isArrayAnyGeneric: Array<any> = [1, 'string', null, undefined, Symbol('id'), {}, false, 1n, []];
-let isObjectAny: any = {}
+let isObjectAny: any = {};
 isAny = 'SomeString';
 isAny = true;
 isAny = 1n;
@@ -80,3 +87,20 @@ isAny = null;
 isAny = undefined;
 isAny = {};
 isAny = [];
+
+//! unknown - Это означает что мы можем задать любой тип и любое значение но он не будет наследовать методы типов которые были установленны
+
+let unknownType: unknown;
+unknownType = 'String';
+unknownType = 1;
+unknownType = false;
+unknownType = 1n;
+unknownType = null;
+unknownType = undefined;
+unknownType = Symbol('id');
+unknownType = [];
+unknownType = {};
+
+// unknownType.toFixed(1) Error
+// (unknownType as number).toFixed(1)
+// (<number>unknownType).toFixed(1)

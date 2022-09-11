@@ -62,6 +62,31 @@ const newUser = {
 	isMarried: false,
 } as IUser;
 
+
+interface IAssertionType {
+	name: string;
+	age: number;
+}
+
+//~ Для того что бы мы могли создать пустой обьект но с ключи и значения будут заданны по позже 
+const assertionTypeOne: IAssertionType = {} as IAssertionType 
+const assertionTypeTwo: IAssertionType = <IAssertionType>{} 
+
+assertionTypeOne.name = 'Aslan'
+assertionTypeOne.age = 28
+
+const personAs = {
+	name: 'Aslan',
+	age: 28
+}
+
+const keysOne = Object.keys(personAs) as Array<keyof typeof personAs>;
+const keysTwo =<Array<keyof typeof personAs>> Object.keys(personAs) ;
+
+keysOne.forEach(key => {
+	personAs[key]
+})
+
 //~ Generic
 const someUser = <IUser>{
 	id: 3,
@@ -81,7 +106,7 @@ const someUser = <IUser>{
 	isMarried: false,
 };
 
-//~ extends
+//~ extends - Мы можем даже наследоваться от type
 interface IExtends {
 	year: number;
 	sity: string;
@@ -92,8 +117,25 @@ interface IPerson {
 	age: number;
 }
 
+type someTypeforInterfece = {
+	city: 'Baku' | string;
+}
+
 interface IExtendsSome extends IExtends, IPerson {
 	country: string;
+}
+
+interface ICityWithPerson extends IPerson, someTypeforInterfece {
+	gender: string
+}
+
+
+const someInterfaceWithType: ICityWithPerson = {
+	gender: 'man',
+	age: 28,
+	city: "Baku",
+	id: 1994,
+	name: "Aslan"
 }
 
 const someUserExtends: IExtendsSome = {

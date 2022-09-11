@@ -19,3 +19,16 @@ type TUser = {
 type TUserKeysNoMeta = Exclude<keyof TUser, '_id' | 'createdAt'>
 type TUserKeysNoMetaTwo = Pick<TUser, 'name' | 'email'>
 
+enum Color {
+	white = '#fff',
+	black = '#000'
+}
+
+type ColorTypeKeyOf = keyof typeof Color;
+
+
+//~ Infer -
+
+type TryInfer<T extends object = object> = T extends infer R ? R : never;
+
+type UserInfer = TryInfer<{name: "Aslan", age: 28}>

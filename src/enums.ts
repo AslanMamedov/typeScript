@@ -48,3 +48,36 @@ enum ReversEnum {
 
 const revers = ReversEnum[0];
 console.log(revers);
+
+//~ Расчетный enum
+
+const fb =  (): number => {
+		return 1
+	}
+
+enum FunctionEnum {
+	facebook = fb()
+}
+
+FunctionEnum.facebook;
+//~ Можно использовать как обьект 
+enum Direction {
+	Up = "UP",
+	Down = 'DOWN',
+	Left = "LEFT",
+	Right = 'RIGHT'
+}
+
+interface IObjectEnum {
+	Up: string;
+	Down: string;
+	Left: string;
+	Right: string;
+
+}
+
+const direction =  (obj: IObjectEnum): void => {
+	console.log(obj)
+}
+
+direction(Direction)

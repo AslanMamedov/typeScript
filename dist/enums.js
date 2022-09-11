@@ -40,3 +40,24 @@ var ReversEnum;
 })(ReversEnum || (ReversEnum = {}));
 const revers = ReversEnum[0];
 console.log(revers);
+//~ Расчетный enum
+const fb = () => {
+    return 1;
+};
+var FunctionEnum;
+(function (FunctionEnum) {
+    FunctionEnum[FunctionEnum["facebook"] = fb()] = "facebook";
+})(FunctionEnum || (FunctionEnum = {}));
+FunctionEnum.facebook;
+//~ Можно использовать как обьект 
+var Direction;
+(function (Direction) {
+    Direction["Up"] = "UP";
+    Direction["Down"] = "DOWN";
+    Direction["Left"] = "LEFT";
+    Direction["Right"] = "RIGHT";
+})(Direction || (Direction = {}));
+const direction = (obj) => {
+    console.log(obj);
+};
+direction(Direction);

@@ -41,15 +41,17 @@ class CarTwo {
 //~ 4 Readonly - Только для чтения
 //~ 5 Static - Статические поле для того что бы они были видны только в самом классе
 class Animal {
-    constructor() {
+    constructor(color) {
         this.voice = '';
         this.year = 0;
         this.color = '';
         this.name = '';
         this.sayHi();
+        this.color = color;
     }
     sayHi() {
-        return `Hello World`;
+        const colors = this.color;
+        return `Hello World ${colors}`;
     }
 }
 Animal.age = '';
@@ -58,7 +60,7 @@ class Cat extends Animal {
         this.voice = voice;
     }
 }
-const cat = new Cat();
+const cat = new Cat('Red');
 //! Abstract Классы и Методы - Для того что бы мы могли наследоваться во время разработки, от нее можно только наследоваться напримую нельзя содать экземпляр
 class Component {
 }

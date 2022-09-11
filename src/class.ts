@@ -59,11 +59,13 @@ class Animal {
 	readonly name: string = '';
 	static age: string = '';
 
-	constructor() {
+	constructor(color: string) {
 		this.sayHi();
+		this.color = color;
 	}
 	private sayHi(): string {
-		return `Hello World`;
+		const colors: string = this.color;
+		return `Hello World ${colors}`;
 	}
 }
 
@@ -72,7 +74,7 @@ class Cat extends Animal {
 		this.voice = voice;
 	}
 }
-const cat = new Cat();
+const cat = new Cat('Red');
 
 //! Abstract Классы и Методы - Для того что бы мы могли наследоваться во время разработки, от нее можно только наследоваться напримую нельзя содать экземпляр
 

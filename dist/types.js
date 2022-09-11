@@ -7,6 +7,7 @@ const isNull = null;
 const isUndefined = undefined;
 const isSymbol = Symbol('symbol');
 const isBigIng = 1n; //! 1n 1_000n
+const isDate = new Date();
 //! Object - Обьект
 const isObject = {
     name: 'Aslan',
@@ -45,6 +46,9 @@ const arrayIsBigIntGeneric = [1n, 1000111n];
 //~  Generic Array<Genereic>
 const arrayIsSymbol = [Symbol('id'), Symbol('key')];
 const arrayIsSymbolGeneric = [Symbol('id'), Symbol('key')];
+//~  Generic Array<Genereic>
+const arrayIsArray = [['Aslan']];
+const arrayIsArrayGeneric = [['String']];
 //! Tuple - Это означает что в массиве должно быть последовательность типов которые должны соотвествовать этим типам и количеству заданных типов.
 const tupleType = [
     1,
@@ -72,3 +76,17 @@ isAny = null;
 isAny = undefined;
 isAny = {};
 isAny = [];
+//! unknown - Это означает что мы можем задать любой тип и любое значение но он не будет наследовать методы типов которые были установленны
+let unknownType;
+unknownType = 'String';
+unknownType = 1;
+unknownType = false;
+unknownType = 1n;
+unknownType = null;
+unknownType = undefined;
+unknownType = Symbol('id');
+unknownType = [];
+unknownType = {};
+// unknownType.toFixed(1) Error
+// (unknownType as number).toFixed(1)
+// (<number>unknownType).toFixed(1)

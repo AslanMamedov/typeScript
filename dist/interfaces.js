@@ -36,6 +36,20 @@ const newUser = {
     },
     isMarried: false,
 };
+//~ Для того что бы мы могли создать пустой обьект но с ключи и значения будут заданны по позже 
+const assertionTypeOne = {};
+const assertionTypeTwo = {};
+assertionTypeOne.name = 'Aslan';
+assertionTypeOne.age = 28;
+const personAs = {
+    name: 'Aslan',
+    age: 28
+};
+const keysOne = Object.keys(personAs);
+const keysTwo = Object.keys(personAs);
+keysOne.forEach(key => {
+    personAs[key];
+});
 //~ Generic
 const someUser = {
     id: 3,
@@ -53,6 +67,13 @@ const someUser = {
         console.log(1 + 2);
     },
     isMarried: false,
+};
+const someInterfaceWithType = {
+    gender: 'man',
+    age: 28,
+    city: "Baku",
+    id: 1994,
+    name: "Aslan"
 };
 const someUserExtends = {
     id: 1,

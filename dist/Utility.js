@@ -28,5 +28,19 @@ class C {
         this.y = 0;
     }
 }
-// type T17 = InstanceType<string> // any
-// type T18 = InstanceType<Function> // Error
+const partialPersonOne = {};
+const partialPersonTwo = {
+    name: 'Aslan',
+    isMarried: false,
+};
+//~ Parameters - Получает тип кортежа аргументов функции
+function parametersUtility(name, age) { }
+//~ ConstructorParameters - Позволяет получить тип данныз из аргументов конструктора
+class ConstructorParametersType {
+    constructor(name, age, isMarried, year) {
+        this.name = name;
+        this.age = age;
+        this.isMarried = isMarried;
+        this.year = year;
+    }
+}

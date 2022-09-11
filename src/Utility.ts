@@ -115,3 +115,46 @@ type T15 = InstanceType<any>; // any
 type T16 = InstanceType<never>; // never
 // type T17 = InstanceType<string> // any
 // type T18 = InstanceType<Function> // Error
+
+//~ Partial - Сделает все поля обьекта опциональными
+
+interface IPartial {
+	name: string;
+	age: number;
+	isMarried: boolean;
+}
+
+type PartialOptions = Partial<IPartial>;
+
+const partialPersonOne: PartialOptions = {};
+const partialPersonTwo: Partial<IPartial> = {
+	name: 'Aslan',
+	isMarried: false,
+};
+
+//~ Parameters - Получает тип кортежа аргументов функции
+
+function parametersUtility(name: string, age: number): void {}
+
+type Parameter = Parameters<typeof parametersUtility>;
+
+//~ ConstructorParameters - Позволяет получить тип данныз из аргументов конструктора
+
+class ConstructorParametersType {
+	constructor(public name: string, public age: number, public isMarried: boolean, public year: number) {}
+}
+type ConstructorParameter = ConstructorParameters<typeof ConstructorParametersType>;
+
+//~ Awaited - Выполняет развертывания промисов
+
+declare function fetch(): Promise<string>
+
+type fetchType = Awaited<ReturnType<typeof fetch>>
+
+
+//! Uppercase | Lowercase | Capitalize | Uncapitalize
+
+type NameUppercase = Uppercase<'name'>; //~ NAME
+type NameLowercase = Lowercase<'NAME'>; //~ name
+type NameCapitalize = Capitalize<'name'>; //~ Name
+type NameUncapitalize = Uncapitalize<'Name'>; //~ name
