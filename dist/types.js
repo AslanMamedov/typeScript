@@ -49,6 +49,11 @@ const arrayIsSymbolGeneric = [Symbol('id'), Symbol('key')];
 //~  Generic Array<Genereic>
 const arrayIsArray = [['Aslan']];
 const arrayIsArrayGeneric = [['String']];
+//~  Generic Array<Genereic>
+const arrayIsDiferentType = [1, 'String'];
+const arrayIsDiferentTypeGeneric = ['String', 1];
+//~ ? 
+const arrayIsMaybeType = ['Something'];
 //! Tuple - Это означает что в массиве должно быть последовательность типов которые должны соотвествовать этим типам и количеству заданных типов.
 const tupleType = [
     1,
@@ -87,6 +92,9 @@ unknownType = undefined;
 unknownType = Symbol('id');
 unknownType = [];
 unknownType = {};
+let someNumber = 1;
+let someNumberType = someNumber;
+let someNumberTypeForAs = someNumber;
 // unknownType.toFixed(1) Error
 // (unknownType as number).toFixed(1)
 // (<number>unknownType).toFixed(1)

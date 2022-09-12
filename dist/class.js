@@ -6,6 +6,10 @@ class Person {
     data() {
         console.log('Something ');
     }
+    sayHi() {
+        console.log('Hi');
+    }
+    ;
 }
 class TypeScript {
     constructor(version, id) {
@@ -63,8 +67,21 @@ class Cat extends Animal {
 const cat = new Cat('Red');
 //! Abstract Классы и Методы - Для того что бы мы могли наследоваться во время разработки, от нее можно только наследоваться напримую нельзя содать экземпляр
 class Component {
+    constructor(name, age) {
+        this.name = '';
+        this.age = 0;
+        this.name = name;
+        this.age = age;
+    }
 }
 class AppComponent extends Component {
+    constructor(name, age, year, isMarried) {
+        super(name, age);
+        this.year = year;
+        this.isMarried = isMarried;
+        this.year = year;
+        this.isMarried = isMarried;
+    }
     render() {
         console.log('Component on render');
     }
@@ -72,6 +89,7 @@ class AppComponent extends Component {
         return 'This is info';
     }
 }
+const appComponent = new AppComponent('Aslan', 28, 1994, false);
 //! instends of - Проверяет  принадлежности какого либо обьекта к классу
 class MyResponse {
     constructor() {

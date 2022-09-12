@@ -59,3 +59,16 @@ function fillArray(len, element) {
 }
 const fillArrayType = fillArray(9, '8');
 console.log(fillArrayType);
+const someThing = 'Hello world';
+const someTypeIsNumber = 1;
+const typeArrayIs = ['Hello'];
+const someFnType = (name, age) => {
+    return [
+        {
+            name,
+            age,
+        },
+    ];
+};
+const value = someFnType("Aslan", 28);
+console.log(value);

@@ -76,6 +76,10 @@ type TSix = TFive & {
 
 type TSeven = Pick<TSix, keyof TSix>;
 
+type TEight = TSeven & {
+	city: string;
+};
+
 const typeUser: TSeven = {
 	name: 'Aslan',
 	age: 28,
@@ -83,26 +87,34 @@ const typeUser: TSeven = {
 	year: 1994,
 };
 
+const typeUserEight: TEight = {
+	name: 'Aslan',
+	age: 28,
+	year: 1994,
+	isMarried: false,
+	city: 'Baku',
+};
+
 type MessageOf<T> = T extends { message: unknown } ? T['message'] : never;
 
 interface IEmail {
-	message: string
+	message: string;
 }
 
 interface ICat {
-	age: number
+	age: number;
 }
 
-type EmailMessgeContents = MessageOf<IEmail>
+type EmailMessgeContents = MessageOf<IEmail>;
 type CatMessgeContents = MessageOf<ICat>;
 
 interface IInKeyOf {
-	[key: string]: any
+	[key: string]: any;
 }
 //~ Мы тут проверяем значения ключенй в заданной Property если это не числового типа то она выдаст ошибку!
 type OptionFlags<T> = {
 	[Property in keyof T]: number;
-}
+};
 
 // const keyofInOptionFlags: OptionFlags<IInKeyOf> = {
 // 	name: 'Aslan'
@@ -110,27 +122,25 @@ type OptionFlags<T> = {
 
 type ErrorMessage = string | string[] | Error;
 
-const apiError: ErrorMessage = JSON.parse(JSON.stringify('[]'))
+const apiError: ErrorMessage = JSON.parse(JSON.stringify('[]'));
 
-const formatedMessage = (apiError as string[]).map(e => e.toUpperCase())
-
+const formatedMessage = (apiError as string[]).map((e) => e.toUpperCase());
 
 //~ const ❗
 
 const userConstOne = {
 	name: 'Aslan',
-	age: 28
-} as const
-const userConstTwo = <const> {
+	age: 28,
+} as const;
+const userConstTwo = <const>{
 	name: 'Aslan',
-	age: 28
-} 
+	age: 28,
+};
 
 type TOneType = typeof userConstOne;
 type TTwoType = typeof userConstTwo;
 
-const months = ['January', 'February', 'Martch'] as const
+const months = ['January', 'February', 'Martch'] as const;
 
 for (let month of months) {
-
 }

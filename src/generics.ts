@@ -86,19 +86,44 @@ function pathField<T extends object, U extends keyof T, V extends T[U]>(obj: T, 
 
 pathField({ name: 'Aslan' }, 'name', 'Aslan');
 
-
 //~ Default value of Generic
 
-function defaultValue <T = string>(name?: T): T | undefined {
-	return name
+function defaultValue<T = string>(name?: T): T | undefined {
+	return name;
 }
 
 const defaultValueType = defaultValue('Aslan');
 
-
 function fillArray<T, U extends number>(len: U, element: T): T[] {
-	return new Array<T>(len).fill(element)
+	return new Array<T>(len).fill(element);
 }
 
-const fillArrayType = fillArray<string, number>(9, '8')
+const fillArrayType = fillArray<string, number>(9, '8');
 console.log(fillArrayType);
+
+type TEveryType<T> = T;
+const someThing: TEveryType<'Hello world'> = 'Hello world';
+const someTypeIsNumber: TEveryType<1> = 1;
+
+type TArray<T> = T[];
+
+const typeArrayIs: TArray<'Hi' | 12 | 'Hello' | 'World' | 2022> = ['Hello'];
+//~ SomePractice
+type TFn<T, K, U> = (name: K, age: U) => T[];
+
+interface IObjectTypeFn {
+	name: string;
+	age: number;
+}
+
+const someFnType: TFn<IObjectTypeFn, 'Aslan', 28> = (name, age) => {
+	return [
+		{
+			name,
+			age,
+		},
+	];
+};
+
+const value = someFnType("Aslan", 28)
+console.log(value);

@@ -31,16 +31,23 @@ const typeUser = {
     isMarried: false,
     year: 1994,
 };
+const typeUserEight = {
+    name: 'Aslan',
+    age: 28,
+    year: 1994,
+    isMarried: false,
+    city: 'Baku',
+};
 const apiError = JSON.parse(JSON.stringify('[]'));
-const formatedMessage = apiError.map(e => e.toUpperCase());
+const formatedMessage = apiError.map((e) => e.toUpperCase());
 //~ const ❗
 const userConstOne = {
     name: 'Aslan',
-    age: 28
+    age: 28,
 };
 const userConstTwo = {
     name: 'Aslan',
-    age: 28
+    age: 28,
 };
 const months = ['January', 'February', 'Martch'];
 for (let month of months) {

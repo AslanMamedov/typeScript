@@ -51,9 +51,22 @@ console.log('Empty', myPosition());
 console.log('One params', myPosition(42));
 console.log('Two params', myPosition(41, 1));
 
+function g<T>(a: T, b: T): T;
+function g<T>(a: T, b: T): T;
+function g(a: any, b: any): any {
+	if (typeof a === 'number') {
+		return a + b;
+	} else {
+		return `${a}${b}`;
+	}
+}
+
+console.log(g<number>(1, 2));
+console.log(g<string>('a', 's'));
+
 //! REST
 
 function restOperation(id: string, ...rest: Array<any>): void {
 	console.log(id, rest);
 }
-restOperation('1994', {name: 'Aslan'}, 1)
+restOperation('1994', { name: 'Aslan' }, 1);

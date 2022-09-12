@@ -93,6 +93,7 @@ declare function f1(): {
 	b: string;
 };
 
+
 type T7 = ReturnType<() => string>; // string
 type T8 = ReturnType<(a: string) => void>; // void
 type T9 = ReturnType<<T>() => T>; // unknown

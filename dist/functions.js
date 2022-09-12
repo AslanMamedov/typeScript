@@ -28,6 +28,16 @@ function myPosition(a, b) {
 console.log('Empty', myPosition());
 console.log('One params', myPosition(42));
 console.log('Two params', myPosition(41, 1));
+function g(a, b) {
+    if (typeof a === 'number') {
+        return a + b;
+    }
+    else {
+        return `${a}${b}`;
+    }
+}
+console.log(g(1, 2));
+console.log(g('a', 's'));
 //! REST
 function restOperation(id, ...rest) {
     console.log(id, rest);

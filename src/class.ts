@@ -2,13 +2,22 @@
 interface IClassPerson {
 	time: Date;
 	data(): void;
+	sayHi: () => void
 }
 
-class Person implements IClassPerson {
+type IClassPersonType = {
+	time: Date;
+	data(): void;
+};
+
+class Person implements IClassPersonType, IClassPerson {
 	time: Date = new Date();
 	data(): void {
 		console.log('Something ');
 	}
+	sayHi(): void {
+		console.log('Hi');
+	} ;
 }
 
 class TypeScript {
@@ -79,19 +88,34 @@ const cat = new Cat('Red');
 //! Abstract Классы и Методы - Для того что бы мы могли наследоваться во время разработки, от нее можно только наследоваться напримую нельзя содать экземпляр
 
 abstract class Component {
+	name: string = ''
+	age: number = 0
+	constructor(name: string, age: number) {
+		this.name = name
+		this.age = age
+	}
+
 	abstract render(): void;
 	abstract info(): string;
 }
 
 class AppComponent extends Component {
+
+	constructor(name: string, age: number, public year: number, public isMarried: boolean) {
+		super(name, age)
+		this.year = year;
+		this.isMarried = isMarried
+	}
+
 	render(): void {
 		console.log('Component on render');
 	}
-
 	info(): string {
 		return 'This is info';
 	}
 }
+
+const appComponent: AppComponent = new AppComponent('Aslan', 28, 1994, false);
 
 //! instends of - Проверяет  принадлежности какого либо обьекта к классу
 
