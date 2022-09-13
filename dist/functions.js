@@ -11,11 +11,6 @@ const someType = (someNumber) => {
     return someNumber;
 };
 console.log(someType(1994));
-//~ never
-const someError = () => {
-    throw new Error('Something was wrong');
-};
-console.log(someError());
 function myPosition(a, b) {
     if (!a && !b) {
         return { x: undefined, y: undefined };
@@ -43,3 +38,22 @@ function restOperation(id, ...rest) {
     console.log(id, rest);
 }
 restOperation('1994', { name: 'Aslan' }, 1);
+//~ ?
+function isNumberType(a, b, c) {
+    const d = a + b;
+    c?.(d);
+    return d;
+}
+let resultIsNumberType = isNumberType(10, 3);
+let resultIsNumberTypeWithFn = isNumberType(10, 3, d => console.log(`Result ${d}`));
+function sumArray(a) {
+    let d = 0;
+    for (const b of a) {
+        d += b?.cost ?? 0;
+    }
+    return d;
+}
+let resultSumArray = sumArray([null, {
+        cost: 10
+    }, undefined, { cost: 20 }, null, { cost: 30 }, undefined]);
+console.log(resultSumArray);

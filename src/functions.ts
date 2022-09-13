@@ -15,10 +15,10 @@ const someType = (someNumber: number): number => {
 console.log(someType(1994));
 
 //~ never
-const someError = (): never => {
-	throw new Error('Something was wrong');
-};
-console.log(someError());
+// const someError = (): never => {
+// 	throw new Error('Something was wrong');
+// };
+// console.log(someError());
 
 //~ Перегрузка функции
 
@@ -70,3 +70,34 @@ function restOperation(id: string, ...rest: Array<any>): void {
 	console.log(id, rest);
 }
 restOperation('1994', { name: 'Aslan' }, 1);
+
+//~ ?
+function isNumberType(a: number, b: number, c?: (d: number) => void): number {
+	const d: number = a + b
+	c?.(d)
+	return d
+}
+
+let resultIsNumberType = isNumberType(10, 3)
+let resultIsNumberTypeWithFn = isNumberType(10, 3, d => console.log(`Result ${d}`))
+
+
+function sumArray(a: ({ cost: number } | null | undefined)[]): number {
+	let d: number = 0;
+
+	for (const b of a) {
+		d += b?.cost ?? 0
+	}
+
+	return d
+}
+
+let resultSumArray = sumArray([null, {
+	cost: 10
+}, undefined, { cost: 20 }, null, { cost: 30 }, undefined])
+console.log(resultSumArray);
+
+
+
+
+

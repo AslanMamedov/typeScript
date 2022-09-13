@@ -44,3 +44,48 @@ class ConstructorParametersType {
         this.year = year;
     }
 }
+const articleOne = { title: 'ARTICLE', page: 1 };
+const articleOneAsConst = { title: 'ARTICLE', page: 1 };
+const articleOneAsConstGeneric = { title: 'ARTICLE', page: 1 };
+const articleArrayOne = [
+    {
+        title: 'Article Array 2',
+        page: 2,
+    },
+    {
+        title: 'Article Array 3',
+        page: 3,
+    },
+    {
+        title: 'Article Array 4',
+        page: 4,
+    },
+];
+articleArrayOne.push({
+    title: 'Article Array 5',
+    page: 5,
+});
+const articleArrayTwo = [
+    {
+        title: 'Article Array 6',
+        page: 6,
+    },
+];
+const articleArrayThree = [
+    {
+        title: 'Article Array 7',
+        page: 7,
+    },
+];
+function readOnlyArrayFnOne(arr) { }
+function readOnlyArrayFnTwo(arr) { }
+//~ Parameters
+function FnOne(a, b) {
+    return a.length > b.toString().length;
+}
+class ClassOne {
+    constructor(a, b) {
+        this.a = a;
+        this.b = b;
+    }
+}

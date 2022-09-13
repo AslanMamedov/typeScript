@@ -144,3 +144,52 @@ const months = ['January', 'February', 'Martch'] as const;
 
 for (let month of months) {
 }
+
+
+//!TypeGuards
+//~ is - Возвращает true или false если передаваемый типом значения не соотвествует тому значению которому вы передали
+
+interface ISuccessType {
+	response: 'Success';
+	data: { name: 'Aslan'; age: 28; isMarried: boolean };
+}
+
+interface IErrorType {
+	response: 'Error';
+	errorMessage: { message: 'Something was wrong' };
+}
+
+type TIsType = ISuccessType | IErrorType;
+
+function isSuccessType(typeIs: TIsType): typeIs is ISuccessType {
+	if (typeIs.response === 'Success') {
+		return true;
+	} else {
+		return false;
+	}
+}
+function isErrorType(typeIs: TIsType): typeIs is IErrorType {
+	if (typeIs.response === 'Error') {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function isResponseDataType(data: TIsType) {
+	if (isSuccessType(data)) {
+		return data.data;
+	} else {
+		return data.errorMessage;
+	}
+}
+
+//~ IsSuccess
+console.log(isSuccessType({ response: 'Success', data: { name: 'Aslan', age: 28, isMarried: false } })); // true
+console.log(isSuccessType({ response: 'Error', errorMessage: { message: 'Something was wrong' } })); // false
+//~ IsError
+console.log(isErrorType({ response: 'Success', data: { name: 'Aslan', age: 28, isMarried: false } })); // true
+console.log(isErrorType({ response: 'Error', errorMessage: { message: 'Something was wrong' } })); // false
+//~ isResponseData
+console.log(isResponseDataType({ response: 'Success', data: { name: 'Aslan', age: 28, isMarried: false } }));
+console.log(isResponseDataType({ response: 'Error', errorMessage: { message: 'Something was wrong' } }));

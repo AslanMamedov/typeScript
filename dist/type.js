@@ -52,3 +52,36 @@ const userConstTwo = {
 const months = ['January', 'February', 'Martch'];
 for (let month of months) {
 }
+function isSuccessType(typeIs) {
+    if (typeIs.response === 'Success') {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+function isErrorType(typeIs) {
+    if (typeIs.response === 'Error') {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+function isResponseDataType(data) {
+    if (isSuccessType(data)) {
+        return data.data;
+    }
+    else {
+        return data.errorMessage;
+    }
+}
+//~ IsSuccess
+console.log(isSuccessType({ response: 'Success', data: { name: 'Aslan', age: 28, isMarried: false } })); // true
+console.log(isSuccessType({ response: 'Error', errorMessage: { message: 'Something was wrong' } })); // false
+//~ IsError
+console.log(isErrorType({ response: 'Success', data: { name: 'Aslan', age: 28, isMarried: false } })); // true
+console.log(isErrorType({ response: 'Error', errorMessage: { message: 'Something was wrong' } })); // false
+//~ isResponseData
+console.log(isResponseDataType({ response: 'Success', data: { name: 'Aslan', age: 28, isMarried: false } }));
+console.log(isResponseDataType({ response: 'Error', errorMessage: { message: 'Something was wrong' } }));

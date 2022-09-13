@@ -93,7 +93,6 @@ declare function f1(): {
 	b: string;
 };
 
-
 type T7 = ReturnType<() => string>; // string
 type T8 = ReturnType<(a: string) => void>; // void
 type T9 = ReturnType<<T>() => T>; // unknown
@@ -148,10 +147,9 @@ type ConstructorParameter = ConstructorParameters<typeof ConstructorParametersTy
 
 //~ Awaited - Выполняет развертывания промисов
 
-declare function fetch(): Promise<string>
+declare function fetch(): Promise<string>;
 
-type fetchType = Awaited<ReturnType<typeof fetch>>
-
+type fetchType = Awaited<ReturnType<typeof fetch>>;
 
 //! Uppercase | Lowercase | Capitalize | Uncapitalize
 
@@ -159,3 +157,174 @@ type NameUppercase = Uppercase<'name'>; //~ NAME
 type NameLowercase = Lowercase<'NAME'>; //~ name
 type NameCapitalize = Capitalize<'name'>; //~ Name
 type NameUncapitalize = Uncapitalize<'Name'>; //~ name
+
+//! Utility
+
+//~ Partial
+type PerosnOne = { name: string; age: number };
+type PersonTwo = Partial<PerosnOne>;
+
+type MyPartial<T> = { [P in keyof T]?: T[P] };
+type MyPersonPArtial = MyPartial<PerosnOne>;
+
+//~ Required
+type AnimalOne = { name?: string; weight?: number };
+type AnimalTwo = Required<AnimalOne>;
+
+type MyRequired<T> = { [P in keyof T]-?: T[P] };
+type MyAnimalRequired = MyRequired<AnimalOne>;
+
+//~ NonNullable
+type ColorOne = string | null | undefined;
+type ColorTwo = NonNullable<ColorOne>;
+
+type MyNonNullable<T> = T extends null | undefined ? never : T;
+type MyColorNonNullabl = MyNonNullable<ColorOne>;
+
+//~ Record
+type DimensionsOne = { width: number; height: number; length: number };
+type DimensionsTwo = Record<'width' | 'height' | 'length', number>;
+
+type Any = keyof any; //~ string | number | symbol
+type MyRecord<K extends keyof any, T> = { [P in K]: T };
+
+type MyDimensions = MyRecord<'width' | 'height' | 'length', number>;
+
+//~ Readonly
+
+type ArticleOne = { title: string; page: number };
+const articleOne: ArticleOne = { title: 'ARTICLE', page: 1 };
+
+type ArticleTwo = Readonly<ArticleOne>;
+
+type MyReadonly<T> = { readonly [P in keyof T]: T[P] };
+
+type MyArticle = MyReadonly<ArticleOne>;
+
+const articleOneAsConst = { title: 'ARTICLE', page: 1 } as const;
+const articleOneAsConstGeneric = <const>{ title: 'ARTICLE', page: 1 };
+
+//~ ReadonlyArray
+
+type ArticlesOne = Array<ArticleOne>;
+
+const articleArrayOne: ArticlesOne = [
+	{
+		title: 'Article Array 2',
+		page: 2,
+	},
+	{
+		title: 'Article Array 3',
+		page: 3,
+	},
+	{
+		title: 'Article Array 4',
+		page: 4,
+	},
+];
+articleArrayOne.push({
+	title: 'Article Array 5',
+	page: 5,
+});
+
+type ArticlesTwo = ReadonlyArray<ArticleOne>;
+
+const articleArrayTwo: ArticlesTwo = [
+	{
+		title: 'Article Array 6',
+		page: 6,
+	},
+];
+const articleArrayThree = [
+	{
+		title: 'Article Array 7',
+		page: 7,
+	},
+] as const;
+
+function readOnlyArrayFnOne(arr: ReadonlyArray<string>): void {}
+function readOnlyArrayFnTwo(arr: readonly string[]): void {}
+
+
+//~ Pick
+type VectorOne = { x: number, y: number, z: number } 
+type VectorTwo = Pick<VectorOne, 'x' | 'y'>
+
+type MyPick<T, K extends keyof T> = { [P in K]: T[P] }
+
+type VectorThree = MyPick<VectorOne, 'x' | 'z'>
+
+//~ Extract
+type TA = string | number | boolean
+type TB = string | number
+type TC = Extract<TA, TB>
+
+type MyExtract<T, U> = T extends U ? T : never
+type TD = MyExtract<TA, TB>
+
+//~ Exclude
+
+type TE = Exclude<TA, TB>
+type MyExclude<T, U> = T extends U ? never : T
+
+type TS = MyExclude<TA, TB>
+
+//~ Omit
+
+type TPersonOne = { name: string; age: number; weight: number; height: number };
+type TPersonTwo = Omit<TPersonOne, 'weight' | 'height'>;
+
+type MyOmit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>
+
+type TPersonThree = MyOmit<TPersonOne, 'name' | 'age'>;
+
+//~ Parameters
+
+function FnOne(a: string, b: number): boolean {
+	return a.length > b.toString().length
+}
+
+class ClassOne {
+	a: boolean
+	b: string
+
+	constructor(a: boolean, b: string) {
+		this.a = a
+		this.b = b
+	}
+}
+
+type TFnOne = typeof FnOne
+type TClassOne = typeof ClassOne
+
+type TCPFn = Parameters<TFnOne>
+
+
+type MyParameters<T extends (...args: any) => any> = T extends (...args: infer P) => any ? P : never 
+
+type TAPFn = MyParameters<TFnOne>;
+
+
+//~ ConstructorParameters
+
+type TEConstructor = ConstructorParameters<TClassOne>; 
+
+type MyConstructorParameters<T extends new (...args: any) => any> = T extends new (...args: infer P) => any ? P : never;
+
+type TEConstructorClass = MyConstructorParameters<TClassOne>;
+
+//~ ReturnType
+
+type G = ReturnType<TFnOne>;
+
+type MyReturnType<T extends (...args: any) => any> = T extends (...args: any) => infer P ? P : any;
+
+type GReturnType = MyReturnType<TFnOne>;
+
+//~ InstanceType
+
+type I = InstanceType<TClassOne>;
+
+type MyInstanceType<T extends new (...args: any) => any> = T extends new (...args: any) => infer P ? P : any;
+
+type ICLass = MyInstanceType<TClassOne>;

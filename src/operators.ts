@@ -44,14 +44,14 @@ const somePersonForInfer = {
 
 type TInferPerson<T> = T extends { [key: string]: infer U } ? U : never;
 type TInferOne = typeof somePersonForInfer;
-type TInferTwo = TInferPerson<TInferOne>
+type TInferTwo = TInferPerson<TInferOne>;
 
 interface ICatTypeAnimal {
-	say: () => 'meow' 
+	say: () => 'meow';
 }
 class AnimalCat implements ICatTypeAnimal {
 	say(): 'meow' {
-		return 'meow'
+		return 'meow';
 	}
 }
 interface IDogTypeAnimal {
@@ -64,9 +64,8 @@ class AnimalDog implements IDogTypeAnimal {
 }
 
 interface IAnimalClass<T> {
-	new (): T
+	new (): T;
 }
-
 
 function createObjectAnimal<T>(classType: IAnimalClass<T>): T {
 	return new classType();
@@ -74,3 +73,74 @@ function createObjectAnimal<T>(classType: IAnimalClass<T>): T {
 
 const petCat = createObjectAnimal<ICatTypeAnimal>(AnimalCat);
 const petDog = createObjectAnimal<IDogTypeAnimal>(AnimalDog);
+
+//~ ??
+let isA: number | null | undefined = null;
+isA = undefined;
+isA = 50;
+let isB: number = isA ?? 100;
+
+//~ ! - Мы утверждаеи что необязательный ключи в обьекте будет тем которым мы задали без undefined или null
+
+interface IProduct {
+	name: string;
+	weight?: number;
+}
+
+function calcTotalWeight(listProduct: IProduct[]) {
+	let totalWeight: number = 0;
+
+	for (const product of listProduct) {
+		totalWeight += product.weight!;
+	}
+
+	return totalWeight;
+}
+
+const totalWeight = calcTotalWeight([
+	{
+		name: 'Tomato',
+		weight: 1,
+	},
+	{
+		name: 'Potato',
+		weight: 2,
+	},
+]);
+
+let numberOne: number | null | undefined = null;
+
+setTimeout(() => {
+	numberOne = 10;
+}, 500);
+
+setTimeout(() => {
+	// const numberTwo: number = numberOne //~ Error
+	const numberTwo: number = numberOne!;
+	console.log(numberTwo);
+}, 1000);
+
+// let text: string //~ Error
+let text!: string;
+console.log(text);
+
+
+
+//~ Пользовательские проверки
+class FrontendDeveloper {
+	isCreateRestApi: boolean = false;
+}
+class BackendDeveloper {
+	isCreateRestApi: boolean = true;
+	createRestApi() {}
+}
+
+function isBackendDeveloper(developer: any): developer is BackendDeveloper {
+	return developer.isCreateRestApi;
+}
+
+function writeCode(developer: FrontendDeveloper | BackendDeveloper) {
+	if (isBackendDeveloper(developer)) {
+		developer.createRestApi()
+	}
+}

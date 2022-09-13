@@ -62,30 +62,29 @@ const newUser = {
 	isMarried: false,
 } as IUser;
 
-
 interface IAssertionType {
 	name: string;
 	age: number;
 }
 
-//~ Для того что бы мы могли создать пустой обьект но с ключи и значения будут заданны по позже 
-const assertionTypeOne: IAssertionType = {} as IAssertionType 
-const assertionTypeTwo: IAssertionType = <IAssertionType>{} 
+//~ Для того что бы мы могли создать пустой обьект но с ключи и значения будут заданны по позже
+const assertionTypeOne: IAssertionType = {} as IAssertionType;
+const assertionTypeTwo: IAssertionType = <IAssertionType>{};
 
-assertionTypeOne.name = 'Aslan'
-assertionTypeOne.age = 28
+assertionTypeOne.name = 'Aslan';
+assertionTypeOne.age = 28;
 
 const personAs = {
 	name: 'Aslan',
-	age: 28
-}
+	age: 28,
+};
 
 const keysOne = Object.keys(personAs) as Array<keyof typeof personAs>;
-const keysTwo =<Array<keyof typeof personAs>> Object.keys(personAs) ;
+const keysTwo = <Array<keyof typeof personAs>>Object.keys(personAs);
 
-keysOne.forEach(key => {
-	personAs[key]
-})
+keysOne.forEach((key) => {
+	personAs[key];
+});
 
 //~ Generic
 const someUser = <IUser>{
@@ -119,24 +118,23 @@ interface IPerson {
 
 type someTypeforInterfece = {
 	city: 'Baku' | string;
-}
+};
 
 interface IExtendsSome extends IExtends, IPerson {
 	country: string;
 }
 
 interface ICityWithPerson extends IPerson, someTypeforInterfece {
-	gender: string
+	gender: string;
 }
-
 
 const someInterfaceWithType: ICityWithPerson = {
 	gender: 'man',
 	age: 28,
-	city: "Baku",
+	city: 'Baku',
 	id: 1994,
-	name: "Aslan"
-}
+	name: 'Aslan',
+};
 
 const someUserExtends: IExtendsSome = {
 	id: 1,
@@ -170,5 +168,56 @@ interface IKey {
 const dynamicKey: IKey = {
 	name: 'Aslan',
 	age: 28,
-	year: 1994
+	year: 1994,
+};
+
+
+//!TypeGuards
+//~ is - Возвращает true или false если передаваемый типом значения не соотвествует тому значению которому вы передали
+
+interface ISuccess {
+	response: 'Success';
+	data: { name: 'Aslan'; age: 28; isMarried: boolean };
 }
+
+interface IError {
+	response: 'Error';
+	errorMessage: { message: 'Something was wrong' };
+}
+
+type TIs = ISuccess | IError;
+
+function isSuccess(typeIs: TIs): typeIs is ISuccess {
+	if (typeIs.response === 'Success') {
+		return true;
+	} else {
+		return false;
+	}
+}
+function isError(typeIs: TIs): typeIs is IError {
+	if (typeIs.response === 'Error') {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function isResponseData(data: TIs) {
+	if (isSuccess(data)) {
+		return data.data;
+	} else {
+		return data.errorMessage;
+	}
+}
+
+//~ IsSuccess
+console.log(isSuccess({ response: 'Success', data: { name: 'Aslan', age: 28, isMarried: false } })); // true
+console.log(isSuccess({ response: 'Error', errorMessage: { message: 'Something was wrong' } })); // false
+//~ IsError
+console.log(isError({ response: 'Success', data: { name: 'Aslan', age: 28, isMarried: false } })); // true
+console.log(isError({ response: 'Error', errorMessage: { message: 'Something was wrong' } })); // false
+//~ isResponseData
+console.log(isResponseData({ response: 'Success', data: { name: 'Aslan', age: 28, isMarried: false } }));
+console.log(isResponseData({ response: 'Error', errorMessage: { message: 'Something was wrong' } }));
+
+

@@ -125,5 +125,62 @@ const someFnType: TFn<IObjectTypeFn, 'Aslan', 28> = (name, age) => {
 	];
 };
 
-const value = someFnType("Aslan", 28)
+const value = someFnType('Aslan', 28);
 console.log(value);
+
+//!
+interface IAnalytics {
+	bussines: string;
+	data: string;
+}
+interface IDesign {
+	graphical: string;
+}
+
+interface IMenu {
+	analytics: IAnalytics;
+	design: IDesign;
+}
+
+const menu: IMenu = {
+	analytics: {
+		bussines: 'Для бизнеса',
+		data: 'Big Data',
+	},
+	design: {
+		graphical: 'Графисеский',
+	},
+};
+
+function getMenu<T, L1 extends keyof T, L2 extends keyof T[L1]>(obj: T, l1: L1, l2: L2) {
+	return obj[l1][l2];
+}
+
+const resultGetMenuAnalytics = getMenu<IMenu, 'analytics', 'data'>(menu, 'analytics', 'data');
+const resultGetMenuDesign = getMenu<IMenu, 'design', 'graphical'>(menu, 'design', 'graphical');
+//~
+console.log(resultGetMenuAnalytics);
+console.log(resultGetMenuDesign);
+
+//~
+
+// class Phone {
+// 	public weight: number;
+// }
+
+// class XiaomiPhone extends Phone {
+// 	public weight: number;
+// 	public accumulator: number;
+// }
+// class ApplePhone extends Phone {
+// 	public weight: number;
+// 	public accumulator: number;
+
+// }
+
+// function createInstane<T extends Phone>(PhoneClass: new () => T): T {
+// 	return new PhoneClass();
+// }
+
+// createInstane(XiaomiPhone).weight;
+// createInstane(ApplePhone).weight;

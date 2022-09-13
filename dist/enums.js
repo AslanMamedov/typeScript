@@ -49,7 +49,7 @@ var FunctionEnum;
     FunctionEnum[FunctionEnum["facebook"] = fb()] = "facebook";
 })(FunctionEnum || (FunctionEnum = {}));
 FunctionEnum.facebook;
-//~ Можно использовать как обьект 
+//~ Можно использовать как обьект
 var Direction;
 (function (Direction) {
     Direction["Up"] = "UP";
@@ -61,3 +61,22 @@ const direction = (obj) => {
     console.log(obj);
 };
 direction(Direction);
+const admin = "Admin" /* PersonEnumForConst.ADMIN */;
+console.log("Admin" /* PersonEnumForConst.ADMIN */);
+var Value;
+(function (Value) {
+    Value[Value["None"] = 0] = "None";
+    Value[Value["Read"] = 2] = "Read";
+    Value[Value["Write"] = 2] = "Write";
+    Value[Value["ReadWrite"] = 2] = "ReadWrite";
+    Value[Value["StringLength"] = 'Sting'.length] = "StringLength";
+})(Value || (Value = {}));
+var Seasons;
+(function (Seasons) {
+    Seasons[Seasons["Winter"] = 0] = "Winter";
+    Seasons[Seasons["Spring"] = 1] = "Spring";
+    Seasons[Seasons["Summer"] = 2] = "Summer";
+    Seasons[Seasons["Autumn"] = 3] = "Autumn";
+})(Seasons || (Seasons = {}));
+let developer = "Frontend" /* Developer.Frontend */;
+console.log(developer);

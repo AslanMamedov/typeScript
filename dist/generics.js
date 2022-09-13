@@ -70,5 +70,39 @@ const someFnType = (name, age) => {
         },
     ];
 };
-const value = someFnType("Aslan", 28);
+const value = someFnType('Aslan', 28);
 console.log(value);
+const menu = {
+    analytics: {
+        bussines: 'Для бизнеса',
+        data: 'Big Data',
+    },
+    design: {
+        graphical: 'Графисеский',
+    },
+};
+function getMenu(obj, l1, l2) {
+    return obj[l1][l2];
+}
+const resultGetMenuAnalytics = getMenu(menu, 'analytics', 'data');
+const resultGetMenuDesign = getMenu(menu, 'design', 'graphical');
+//~
+console.log(resultGetMenuAnalytics);
+console.log(resultGetMenuDesign);
+//~
+// class Phone {
+// 	public weight: number;
+// }
+// class XiaomiPhone extends Phone {
+// 	public weight: number;
+// 	public accumulator: number;
+// }
+// class ApplePhone extends Phone {
+// 	public weight: number;
+// 	public accumulator: number;
+// }
+// function createInstane<T extends Phone>(PhoneClass: new () => T): T {
+// 	return new PhoneClass();
+// }
+// createInstane(XiaomiPhone).weight;
+// createInstane(ApplePhone).weight;

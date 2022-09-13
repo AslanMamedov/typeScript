@@ -111,3 +111,5 @@ let someNumberTypeForAs: number = someNumber as number
 // unknownType.toFixed(1) Error
 // (unknownType as number).toFixed(1)
 // (<number>unknownType).toFixed(1)
+
+//
